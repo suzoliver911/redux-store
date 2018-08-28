@@ -1,9 +1,9 @@
 export class Store {
   private subscribers: Function[];
-  private reducers: {[key: string]: Function };
-  private state: {[key: string]: any};
+  private reducers: { [key: string]: Function };
+  private state: { [key: string]: any };
 
-  constructor (reducers = {}, initialState = {}) {
+  constructor(reducers = {}, initialState = {}) {
     this.subscribers = [];
     this.reducers = reducers;
     this.state = this.reduce(initialState, {});
@@ -19,7 +19,7 @@ export class Store {
     this.notify();
     return () => {
       this.subscribers = this.subscribers.filter(sub => sub !== fn);
-    }
+    };
   }
 
   dispatch(action) {
@@ -34,13 +34,12 @@ export class Store {
   // each reducer manages its own piece of state
   private reduce(state, action) {
     const newState = {};
-    for (const prop in this.reducers) {
+    for (const prop of Object.keys(this.reducers)) {
       // using prop we dynamically reference the following:
       // newState.todos = this.reducers.todos();
+      console.log('prop:', prop);
       newState[prop] = this.reducers[prop](state[prop], action);
-
     }
     return newState;
   }
-
 }

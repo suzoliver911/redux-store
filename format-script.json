@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "format:check": "prettier --config ./.prettierrc --list-different \"src/{store}/**/*{.ts,.js,.json,.css,.scss}\""
+  }
+}

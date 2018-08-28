@@ -37,7 +37,6 @@ export class Store {
     for (const prop of Object.keys(this.reducers)) {
       // using prop we dynamically reference the following:
       // newState.todos = this.reducers.todos();
-      console.log('prop:', prop);
       newState[prop] = this.reducers[prop](state[prop], action);
     }
     return newState;
